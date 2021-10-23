@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import './App.css'
 
-function App() {
+const App = () => {
+  const [value, setValue] = useState(0);
+
+  const reset = () => {
+    setValue(0);
+  };
+
+  const increase = () => {
+    setValue((prevState) => prevState + 1);
+  };
+
+  const decrease = () => {
+    setValue((prevState) => prevState - 1);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <div className={value < 0 ? 'red' : 'value'}>{value}</div>
+      <div className="buttons">
+        <button type="button" onClick={increase}>
+          Increase
+        </button>
+        <button type="button" onClick={reset}>
+          Reset
+        </button>
+        <button type="button" onClick={decrease}>
+          Decrease
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
